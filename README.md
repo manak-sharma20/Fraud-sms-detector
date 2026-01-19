@@ -1,24 +1,24 @@
-
 # Online Scam Message Detection
 
 ## Overview
-This project detects online scam messages using Natural Language Processing and Machine Learning.
+This project focuses on detecting online scam messages using Natural Language Processing (NLP) and Machine Learning techniques. The model classifies messages as **scam** or **safe** based on textual patterns.
 
 ## Dataset
-SMS Spam Collection Dataset (Kaggle)
+SMS Spam Collection Dataset (Kaggle), containing labeled SMS messages used for training and evaluation.
 
 ## Approach
-- Text preprocessing (lowercasing, URL removal, punctuation removal)
-- TF-IDF vectorization (unigrams and bigrams)
-- Multinomial Naive Bayes classifier
+- Text preprocessing including lowercasing, URL removal, number removal, and punctuation removal
+- Feature extraction using TF-IDF vectorization (unigrams and bigrams)
+- Classification using Multinomial Naive Bayes
 - Model evaluation using accuracy, precision, recall, and confusion matrix
+- Inference testing with real-world custom messages
 
 ## Results
-The model achieved high accuracy and precision, effectively identifying scam messages.
+The model achieved high accuracy and strong precision, demonstrating effective detection of scam messages while minimizing false safe predictions.
 
 ## Example
-Input:
+**Input:**  
 "You have won ₹50,000. Click link now"
 
-Output:
+**Output:**  
 Scam

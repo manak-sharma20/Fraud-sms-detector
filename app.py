@@ -57,7 +57,7 @@ def clean_input_text(text):
     return text.strip()
 
 def main():
-    st.title("📱 Fraud SMS Detector")
+    st.title("Fraud SMS Detector")
     st.markdown("Analyze an SMS or message to determine if it is a potential **SCAM** or **SAFE**.")
     
     # Load model 

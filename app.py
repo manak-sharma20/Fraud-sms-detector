@@ -13,14 +13,24 @@ st.set_page_config(page_title="Fraud SMS Detector", page_icon="📱", layout="ce
 def load_and_train_model():
     """Load dataset, train the model, and return vectorizer and model."""
     try:
-        df = pd.read_csv("data/spam.csv", encoding="latin-1")
+        df_india = pd.read_csv("data/spam_ham_india.csv")
+        df_india = df_india[['Label', 'Msg']]
+        df_india.columns = ['label', 'message']
+    except FileNotFoundError:
+        st.error("Dataset 'data/spam_ham_india.csv' not found. Please ensure it exists in the 'data' folder.")
+        st.stop()
+
+    try:
+        df_global = pd.read_csv("data/spam.csv", encoding="latin-1")
+        df_global = df_global[['v1', 'v2']]
+        df_global.columns = ['label', 'message']
     except FileNotFoundError:
         st.error("Dataset 'data/spam.csv' not found. Please ensure it exists in the 'data' folder.")
         st.stop()
-        
-    # Preprocess
-    df = df[['v1', 'v2']]
-    df.columns = ['label', 'message']
+
+    # Combine the datasets
+    df = pd.concat([df_global, df_india], ignore_index=True)
+    df.dropna(subset=['message', 'label'], inplace=True)
     
     df['label'] = df['label'].map({
         'spam': 'scam',
